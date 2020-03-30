@@ -8,7 +8,7 @@ class Axl {
     this.ucm = ucm
     this.soapXml = ''
 
-    let auth = Buffer.from(`${this.ucm.user}:${this.ucm.pass}`).toString(
+    let auth = Buffer.from(`${this.ucm.user}:${this.ucm.password}`).toString(
       'base64'
     )
 
