@@ -3,7 +3,7 @@ const https = require('https')
 const parser = require('xml2json')
 const builder = require('xmlbuilder')
 
-class Axl {
+class AxSizzle {
   constructor(ucm) {
     this.ucm = ucm
     this.soapXml = ''
@@ -86,4 +86,4 @@ class Axl {
   }
 }
 
-module.exports = Axl
+module.exports = AxSizzle
