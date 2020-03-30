@@ -1,4 +1,30 @@
 {
   "name": "@sloan58/axsizzle",
-  "version": "0.0.1"
+  "version": "0.0.1",
+  "description": "Fo shizzle",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sloan58/axsizzle.git"
+  },
+  "keywords": [
+    "cisco",
+    "axl",
+    "soap"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sloan58/axsizzle/issues"
+  },
+  "homepage": "https://github.com/sloan58/axsizzle#readme",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "https": "^1.0.0",
+    "xml2json": "^0.12.0",
+    "xmlbuilder": "^15.1.0"
+  }
 }
