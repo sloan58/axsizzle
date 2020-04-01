@@ -4,7 +4,7 @@ const parser = require('xml2json')
 const builder = require('xmlbuilder')
 
 class AxSizzle {
-  constructor(ucm) {
+  constructor(ucm, timeout = 10000, rejectUnauthorized = false) {
     this.ucm = ucm
     this.soapXml = ''
 
@@ -14,14 +14,14 @@ class AxSizzle {
 
     this.client = axios.create({
       baseURL: `https://${this.ucm.ip}:8443/axl/`,
-      timeout: 10000,
+      timeout: timeout,
       headers: {
         SOAPAction: `"CUCM:DB ver=${this.ucm.version} `,
         Authorization: `Basic ${auth}`,
         'Content-Type': 'text/xml; charset=utf-8'
       },
       httpsAgent: new https.Agent({
-        rejectUnauthorized: false
+        rejectUnauthorized
       })
     })
 
@@ -63,16 +63,12 @@ class AxSizzle {
         })
         .catch(error => {
           if (error.response) {
-            console.log(error.response.data)
-            console.log(error.response.status)
-            console.log(error.response.headers)
-            reject(error.response.data)
+            reject({ error: this.parseErrorResponse(error.response) })
           } else if (error.request) {
-            reject(error.request)
+            reject({ error: error.message })
           } else {
-            reject('Error', error.message)
+            reject({ error: error.message })
           }
-          // console.log(error.config)
         })
     })
   }
@@ -83,6 +79,16 @@ class AxSizzle {
       object: true,
       sanitize: true
     })['soapenv:Envelope']['soapenv:Body'][`ns:${method}Response`].return
+  }
+
+  parseErrorResponse = ({ status, data }) => {
+    if (status === 401) return 'Unauthorized'
+
+    return parser.toJson(data, {
+      trim: true,
+      object: true,
+      sanitize: true
+    })['soapenv:Envelope']['soapenv:Body']['soapenv:Fault'].faultstring
   }
 }
 
