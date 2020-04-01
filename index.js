@@ -8,9 +8,9 @@ class AxSizzle {
     this.ucm = ucm
     this.soapXml = ''
 
-    let auth = Buffer.from(`${this.ucm.user}:${this.ucm.password}`).toString(
-      'base64'
-    )
+    let auth = Buffer.from(
+      `${this.ucm.username}:${this.ucm.password}`
+    ).toString('base64')
 
     this.client = axios.create({
       baseURL: `https://${this.ucm.ip}:8443/axl/`,
