@@ -31,9 +31,9 @@ const AxSizzle = require('@sloan58/axsizzle')
 // with the required properties
 let ucm = {
   ip: '10.1.10.1',
-  user: 'Administrator',
+  username: 'Administrator',
   password: 'supersecret',
-  version: '12.5'
+  version: '12.5',
 }
 
 // Create the AXL wrapper client
@@ -51,8 +51,8 @@ Each API request needs an object that specifies two properties:
 let message = {
   method: 'getPhone',
   body: {
-    name: 'SEP001D452CDDB7'
-  }
+    name: 'SEP001D452CDDB7',
+  },
 }
 ```
 
@@ -63,8 +63,8 @@ let message = {
   method: 'updatePhone',
   body: {
     name: 'SEP001D452CDDB1',
-    description: 'Hey, this is a new description!'
-  }
+    description: 'Hey, this is a new description!',
+  },
 }
 ```
 
@@ -75,8 +75,8 @@ let message = {
   method: 'listPhone',
   body: {
     searchCriteria: [{ name: '%' }],
-    returnedTags: [{ name: '', description: '' }]
-  }
+    returnedTags: [{ name: '', description: '' }],
+  },
 }
 ```
 
@@ -86,8 +86,8 @@ let message = {
 let message = {
   method: 'removePhone',
   body: {
-    name: 'SEP123123123123'
-  }
+    name: 'SEP123123123123',
+  },
 }
 ```
 
@@ -97,8 +97,8 @@ let message = {
 let message = {
   method: 'executeSQLQuery',
   body: {
-    sql: 'SELECT name FROM device'
-  }
+    sql: 'SELECT name FROM device',
+  },
 }
 ```
 
@@ -108,8 +108,8 @@ let message = {
 // Call the API and log the ouput
 client
   .callApi(message)
-  .then(result => console.log(result))
-  .catch(err => console.log(err))
+  .then((result) => console.log(result))
+  .catch((err) => console.log(err))
 ```
 
 ## Todo
